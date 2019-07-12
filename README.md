@@ -1,2 +1,2 @@
 # Ovideo-Recorder
-Video-Recorder Basic with local storage support.
+Video-Recorder Basic with local Filesystem support.
