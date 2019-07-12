@@ -145,7 +145,7 @@
             image: false,
             audio: true,
             video: true,
-            maxLength: 50,
+            maxLength: 120,
             debug: true,
             convertEngine: 'ts-ebml' // Intervals metadata
           }
