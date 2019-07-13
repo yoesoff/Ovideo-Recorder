@@ -12,12 +12,14 @@ var player = videojs('myVideo', {
     plugins: {
         // videojs-record plugin options
         record: {
-        image: false,
-        audio: true,
-        video: true,
-        maxLength: 120,
-        debug: true,
-        convertEngine: 'ts-ebml' // Intervals metadata
+            image: false,
+            audio: true,
+            video: true,
+            maxLength: 120,
+            debug: true,
+            convertEngine: 'ts-ebml', // give intervals, metadata, etc.
+            videoMimeType: 'video/'+video_format,
+            fluid: true
         }
     }
 });

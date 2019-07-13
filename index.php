@@ -20,16 +20,23 @@
   <body>
      <!-- Page Content -->
     <div class="container">
-      <h1>Video Recorder</h1> 
-      <!-- https://github.com/collab-project/videojs-record#examples -->
-      <!-- Video player, When recording either audio/video, video-only, animated GIF or a single image, include a video element -->
-      <video id="myVideo" playsinline class="video-js vjs-default-skin"></video>
-
+      <center>
+        <h1>Video Recorder</h1> 
+        <!-- https://github.com/collab-project/videojs-record#examples -->
+        <!-- Video player, When recording either audio/video, video-only, animated GIF or a single image, include a video element -->
+        <video id="myVideo" playsinline class="video-js vjs-default-skin"></video>
+        <hr />
+      </center>
+      <!-- Local Filesystem -->
       <h2>In your local harddrive.</h2>
       <ul id="filelistLocal"></ul>
+      <p><i>*Click image to donwload.</i></p>
 
+      <!-- Server Filesystem -->
       <h2>Uploaded to the server.</h2>
       <ul id="filelistServer"></ul>
+      <p><i>*Click image to donwload.</i></p>
+
     </div>
   </body>
 

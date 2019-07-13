@@ -1,4 +1,5 @@
 var tmpBlob = null;
+var video_format = "mp4";
 
 //  Buat nama file pakai date. 
 function createTime() {
@@ -12,7 +13,7 @@ function createTime() {
 function createVideo(fs) {
     console.log('Opened file system: ' + fs.name);
 
-    fs.root.getFile('vid_'+createTime()+'.webm', {create: true, exclusive: false}, function(fileEntry) {
+    fs.root.getFile('vid_'+createTime()+'.'+video_format, {create: true, exclusive: false}, function(fileEntry) {
 
     // Create a FileWriter object for our FileEntry (log.txt).
     fileEntry.createWriter(function(fileWriter) {
@@ -37,7 +38,7 @@ function createVideo(fs) {
     
 }
 
-// Ini yang ambil videos dari Filesystem
+// Ini yang ambil videos dari Filesystem lalu panggil fungsi list buat populate videos ke list.
 function readVideos(fs) {
     var dirReader = fs.root.createReader();
     var entries = [];
@@ -57,12 +58,13 @@ function readVideos(fs) {
     readEntries(); // Start reading dirs recursively.
 }
 
+// Delete video dengan konfirmasi dulu.
 function deleteVideo(fs, name) {
     var conf = confirm(`Are you sure want to remove ${name}?`);
     
     if (conf) {
         fs.root.getFile(name, {create: false}, function(fileEntry) {
-
+            console.log('Deleted', fileEntry);
             fileEntry.remove(function() {
                 console.log(`File ${name} removed.`);
                 resetFilelistLocal(fs); // reset list local video
@@ -73,12 +75,13 @@ function deleteVideo(fs, name) {
     }
 }
 
-
+// tombol-tombol delete|view|play
 function videoActions(fs, name) {
     var videlid = name.replace(/[^a-z0-9]/gi,''); // link element id
     return `&nbsp;(<a href="javascript:void(0);" id="delete_${videlid}"> Delete </a> | <a href="javascript:void(0);" id="play_${videlid}"> Play </a> | <a href="javascript:void(0);" id="upload_${videlid}"> Upload </a>)`;
 }
 
+// Beri event pada tombol-tombol delete|view|play
 function bindVideoActions(fs, name) {
     var videlid = name.replace(/[^a-z0-9]/gi,''); // link element id
 
@@ -87,13 +90,11 @@ function bindVideoActions(fs, name) {
         deleteVideo(fs, name);
      }, false);
     document.getElementById(`play_${videlid}`).addEventListener('click', function () {
-        console.log(`delete_${videlid} clicked`);
-        alert('click');
-        return false;
+        console.log(`play_${videlid} clicked`);
+        alert('play, todo.');
      }, false);
     document.getElementById(`upload_${videlid}`).addEventListener('click', function () {
-        alert('click');
-        return false;
+        alert('upload, todo.');
      }, false);
 }
 
@@ -101,7 +102,7 @@ function toArray(list) {
     return Array.prototype.slice.call(list || [], 0);
 }
 
-// Ini yang bikin LI list.
+// Ini yang populate LI list.
 function listVideos(entries, fs) {
     if (entries.length > 0) {
         // Document fragments can improve performance since they're only appended
@@ -145,7 +146,7 @@ function errorHandler(fs) {
     console.log('Error: ' + fs.name);
 }
 
-// beres recording reset
+// beres recording langsung reset list LI videos
 function resetFilelistLocal(fs) {
     document.getElementById("filelistLocal").innerHTML = "";
     readVideos(fs);
