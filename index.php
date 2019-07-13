@@ -25,6 +25,8 @@
         <!-- https://github.com/collab-project/videojs-record#examples -->
         <!-- Video player, When recording either audio/video, video-only, animated GIF or a single image, include a video element -->
         <video id="myVideo" playsinline class="video-js vjs-default-skin"></video>
+        <br/>
+        Please use <a href="https://teahrm.id/">HTTPS</a>!, Supported browsers: <a href="https://www.google.com/chrome/">Chrome</a> (Mobile, Desktop), <a href="https://www.microsoft.com/en-us/windows/microsoft-edge">Edge</a> (Mobile, Desktop).
         <hr />
       </center>
       <!-- Local Filesystem -->
