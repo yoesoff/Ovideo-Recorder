@@ -1,5 +1,12 @@
 window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
-window.requestFileSystem(window.TEMPORARY, 50*1024*1024 /*5MB*/, readVideos, errorHandler); // on doc load ambil existin videos 
+
+if (typeof window.requestFileSystem === "function") { 
+    // safe to use the function
+    window.requestFileSystem(window.TEMPORARY, 50*1024*1024 /*5MB*/, readVideos, errorHandler); // on doc load ambil existin videos 
+    fileSystemSupported = true; // <- ini acuan selanjutnya!
+} else {
+    document.getElementById("filelistLocal").innerHTML = "<li style='color:red;'>Your browser doesn't support FileSystem :( ! </li>";
+}
 
 // start video recording stuff
 var player = videojs('myVideo', {
@@ -39,10 +46,12 @@ player.on('finishConvert', function() {
     // the convertedData object contains the converted data that
     // can be downloaded by the user, stored on server etc.
     // console.log('finished converting: ', player.convertedData);
-    // player.record().saveAs({'video': 'my-video-file-converted.webm'});
+    // player.record().saveAs({'video': 'my-video-file-converted.webm'}); // <-  buat langsung mendownload 
 
     // Request access to save file.
     tmpBlob = player.convertedData;
-    window.requestFileSystem(window.TEMPORARY, 50*1024*1024 /*50MB*/, createVideo, errorHandler);
+    if (fileSystemSupported) {
+        window.requestFileSystem(window.TEMPORARY, 50*1024*1024 /*50MB*/, createVideo, errorHandler);
+    }
 });
 // end video recording stuff

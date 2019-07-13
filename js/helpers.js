@@ -1,3 +1,4 @@
+var fileSystemSupported = false; // Default is false
 var tmpBlob = null;
 var video_format = "mp4";
 
@@ -143,7 +144,10 @@ function listVideos(entries, fs) {
 
 // Error handling lari kesini.
 function errorHandler(fs) {
-    console.log('Error: ' + fs.name);
+    var msg = 'Error: ' + fs.name;
+    console.log(msg);
+
+    alert(msg);
 }
 
 // beres recording langsung reset list LI videos
