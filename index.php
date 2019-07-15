@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Test Video</title>
-    
+
     <!-- Sugar -->
     <link rel="stylesheet" href="css/sugar/bootstrap.min.css" />
     <!-- End of Sugar -->
@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="css/video-js.min.css" />
     <link rel="stylesheet" href="css/videojs.wavesurfer.min.css" />
     <link rel="stylesheet" href="css/videojs.record.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+
     <link rel="icon" type="image/png" href="images/favicon.png" />
   </head>
 
@@ -28,6 +30,10 @@
         <br/>
         Please use <a href="https://teahrm.id/">HTTPS</a>!, Supported browsers: <a href="https://www.google.com/chrome/">Chrome</a> (Mobile, Desktop), <a href="https://www.microsoft.com/en-us/windows/microsoft-edge">Edge</a> (Mobile, Desktop).
         <hr />
+
+        <h2>Connection status</h2>
+        <img src="images/online.svg" width="80" height="80" />
+        <p>Nice! You are currently online.</p>
       </center>
       <!-- Local Filesystem -->
       <h2>In your local harddrive.</h2>
@@ -57,4 +63,18 @@
   <!-- Here is the custom code! -->
   <script src="js/helpers.js"></script>
   <script src="js/index.js"></script>
+
+  <script>
+    // Register the service worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+        // Registration was successful
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }).catch(function(err) {
+        // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+        });
+    }
+  </script>
+
 </html>
