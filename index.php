@@ -70,6 +70,7 @@
   <!-- App Configuration -->
   <script>
       var fileSystemSupported = false; // Default is false
+      var indexedDBSupported = false; // Default is false
       var tmpBlob = null;
       var video_format = "mp4";
   </script>
