@@ -40,7 +40,7 @@ player.on('finishConvert', function() {
 
     // Request access to save file.
     tmpBlob = player.convertedData; // <- via global variable ya!
-alert(video_format);
+
     // simpan ke filesystem bila supported
     if (fileSystemSupported) {
         window.requestFileSystem(window.TEMPORARY, 50*1024*1024 /*50MB*/, saveVideo, errorHandler);
@@ -48,6 +48,7 @@ alert(video_format);
 
     //Simpan ke Indexeddb bila supported
     if(indexedDBSupported) {
+        tmpBlob.name = "test";
         xsaveVideo(xdb, tmpBlob);
     }
 

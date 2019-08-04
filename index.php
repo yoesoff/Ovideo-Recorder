@@ -35,6 +35,15 @@
         <ul id="filelistLocal"></ul>
         <i>*Click title to download.</i>
       </div>
+      
+      <hr/>
+      
+      <div>
+        <!-- Local Filesystem -->
+        <h2><u>In your local IndexedDB.</u></h2>
+        <ul id="indexdblistLocal"></ul>
+        <i>*Click title to download.</i>
+      </div>
 
       <!-- @todo <div>
         Server Filesystem

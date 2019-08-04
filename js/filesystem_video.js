@@ -121,6 +121,16 @@ function listVideos(entries, fs) {
             li.innerHTML = ['<a id="'+videlid+'" href rel="stylesheet" download="'+name+'">', x, '. ', name, '</a>', videoActions(fs, entry.name)].join('');
 
             fragment.appendChild(li);
+            x++;
+        });
+
+        document.querySelector('#filelistLocal').appendChild(fragment);
+
+        // untuk donwload video
+        entries.forEach(function(entry, i) {
+            var li = document.createElement('li');
+            var videlid = entry.name.replace(/[^a-z0-9]/gi,''); // link element id
+            var name = entry.name;
 
             // get video by name to filesystem and set to download link
             fs.root.getFile(entry.name, {}, function(entry) {
@@ -134,11 +144,8 @@ function listVideos(entries, fs) {
 
             }, errorHandler);
             // end get
-
-            x++;
         });
 
-        document.querySelector('#filelistLocal').appendChild(fragment);
     } else {
         document.getElementById("filelistLocal").innerHTML = "<li>No video found! </li>";
     }
